@@ -272,8 +272,8 @@ jobs:
           echo "Uploading $arm64_apk to GitHub release"
           gh release upload ${{ needs.get-release.outputs.release_tag }} $arm64_apk --clobber
           echo "Uploading signatures to GitHub release"
-          #pnpm tauri signer sign $universial_apk
-          #pnpm tauri signer sign $arm64_apk
+          pnpm tauri signer sign $universial_apk
+          pnpm tauri signer sign $arm64_apk
           gh release upload ${{ needs.get-release.outputs.release_tag }} $universial_apk.sig --clobber
           gh release upload ${{ needs.get-release.outputs.release_tag }} $arm64_apk.sig --clobber
 
@@ -378,7 +378,7 @@ jobs:
 
           echo "Signing portable binary"
           pushd apps/readest-app/
-          #pnpm tauri signer sign "../../$bin_file"
+          pnpm tauri signer sign "../../$bin_file"
           popd
           echo "Uploading signature to GitHub release"
           gh release upload ${{ needs.get-release.outputs.release_tag }} $bin_file.sig --clobber
